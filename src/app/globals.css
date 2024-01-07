@@ -4,42 +4,47 @@
 
 @layer base {
   :root {
-    --colors-brand-1: #0EA5EA;
-    --colors-brand-2: #1CC2E7;
-    --colors-brand-3: #0EA5EA;
+    --colors-brand-1: #0ea5ea;
+    --colors-brand-2: #1cc2e7;
+    --colors-brand-3: #0ea5ea;
     --colors-theme-100: #1cc2e7;
-    --colors-theme-200: #66768F;
-    --colors-theme-300: #7F92B0;
-    --colors-theme-400: #94A9C9;
+    --colors-theme-200: #66768f;
+    --colors-theme-300: #7f92b0;
+    --colors-theme-400: #94a9c9;
     --colors-theme-500: #2e548c;
-    --colors-theme-600: #7E9CC7;
-    --colors-theme-700: #4E658A;
-    --colors-theme-800: #C8D5E8;
-    --colors-theme-850: #E8EDF5;
-    --colors-theme-900: #F9FBFF;
-    --colors-theme-950: #F9FBFF;
+    --colors-theme-600: #7e9cc7;
+    --colors-theme-700: #4e658a;
+    --colors-theme-800: #c8d5e8;
+    --colors-theme-850: #e8edf5;
+    --colors-theme-900: #f9fbff;
+    --colors-theme-950: #f9fbff;
     --colors-theme-white: #344161;
+
+    --swiper-pagination-bullet-horizontal-gap: 10px;
+    --swiper-pagination-color: var(--colors-brand-2);
+    --swiper-pagination-bullet-inactive-color: var(--colors-theme-300);
   }
 
   html.dark {
-    --colors-brand-1: #0EA5EA;
-    --colors-brand-2: #1CC2E7;
-    --colors-brand-3: #0EA5EA;
-    --colors-theme-100: #D8E6FB;
-    --colors-theme-200: #C9DAF5;
-    --colors-theme-300: #B8CDEB;
-    --colors-theme-400: #A7BDDD;
-    --colors-theme-500: #94A9C9;
-    --colors-theme-600: #7F92B0;
-    --colors-theme-700: #66768F;
-    --colors-theme-800: #222F43;
-    --colors-theme-850: #131C31;
-    --colors-theme-900: #0F172A;
-    --colors-theme-950: #0B1222;
+    --colors-brand-1: #0ea5ea;
+    --colors-brand-2: #1cc2e7;
+    --colors-brand-3: #0ea5ea;
+    --colors-theme-100: #d8e6fb;
+    --colors-theme-200: #c9daf5;
+    --colors-theme-300: #b8cdeb;
+    --colors-theme-400: #a7bddd;
+    --colors-theme-500: #94a9c9;
+    --colors-theme-600: #7f92b0;
+    --colors-theme-700: #66768f;
+    --colors-theme-800: #222f43;
+    --colors-theme-850: #131c31;
+    --colors-theme-900: #0f172a;
+    --colors-theme-950: #0b1222;
     --colors-theme-white: #b9e0f2;
   }
 
-  html, body {
+  html,
+  body {
     @apply bg-theme-900 text-theme-500 text-sm;
   }
 
@@ -48,10 +53,14 @@
   ::after {
     @apply dark:border-theme-800;
   }
+
+  .markdown * {
+    @apply !mb-6;
+  }
 }
 
-@layer components { 
+@layer components {
   .stretched-link {
-    @apply after:content-[''] after:absolute after:w-full after:h-full after:inset-0
+    @apply after:content-[''] after:absolute after:w-full after:h-full after:inset-0;
   }
 }

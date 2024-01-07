@@ -23,7 +23,6 @@ export async function generateMetadata({
 }: DynamicPageProps): Promise<Metadata> {
   try {
     const data = await getStoryBySlugArray(slug);
-
     const meta = data.story.content?.meta;
     if (!meta) {
       throw new Error();

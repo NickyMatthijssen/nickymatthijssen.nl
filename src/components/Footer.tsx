@@ -18,7 +18,7 @@ export function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-x-12"
+          className="grid lg:grid-cols-3 gap-x-12"
         >
           <div className="mb-[30px]">
             <StoryblokImage

@@ -3,17 +3,11 @@ import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokBridgeLoader from "@storyblok/react/bridge-loader";
-import {
-  Footer,
-  GlobalsProvider,
-  Navigation,
-  TanstackQueryProvider,
-} from "@/components";
+import { GlobalsProvider, TanstackQueryProvider } from "@/components";
 import { getStory } from "@/services/storyblok";
 import "swiper/css";
 import StoryblokProvider from "@/components/StoryblokProvider";
 import { storyblokComponents } from "@/storyblok";
-import { PageAnimation } from "@/components/PageAnimation";
 
 export const revalidate = 60 * 60;
 
@@ -30,7 +24,7 @@ export const metadata: Metadata = {
     default: "Welcome",
     template: "%s | Nicky Matthijssen",
   },
-  metadataBase: new URL("https://nickymatthijssen.nl"),
+  metadataBase: new URL("https://a.storyblok.com"),
 };
 
 export default async function RootLayout({
@@ -45,15 +39,7 @@ export default async function RootLayout({
       <GlobalsProvider story={globals.story}>
         <TanstackQueryProvider>
           <html lang="en" className="dark">
-            <body className={inter.className}>
-              <PageAnimation>
-                <Navigation />
-
-                <main>{children}</main>
-
-                <Footer />
-              </PageAnimation>
-            </body>
+            <body className={inter.className}>{children}</body>
 
             <StoryblokBridgeLoader options={{}} />
           </html>

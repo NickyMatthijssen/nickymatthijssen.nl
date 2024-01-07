@@ -37,7 +37,7 @@ export function Project({ blok, ...rest }: ProjectProps) {
         size="4xl"
         weight="bold"
         color="gradient"
-        className="text-center"
+        className="text-center mt-[50px]"
       >
         {blok.title}
       </Text>
@@ -53,7 +53,9 @@ export function Project({ blok, ...rest }: ProjectProps) {
               Project Details
             </Text>
 
-            <Markdown>{blok.details}</Markdown>
+            <div className="markdown">
+              <Markdown>{blok.details}</Markdown>
+            </div>
           </section>
         </div>
 
