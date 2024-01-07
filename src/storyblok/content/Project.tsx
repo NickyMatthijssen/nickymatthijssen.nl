@@ -30,8 +30,6 @@ type ProjectProps = {
 };
 
 export function Project({ blok, ...rest }: ProjectProps) {
-  console.log(rest);
-  console.log(blok);
   return (
     <div className="container">
       <Text
@@ -75,7 +73,7 @@ export function Project({ blok, ...rest }: ProjectProps) {
               {blok.client && (
                 <>
                   <DetailListTitle>Client</DetailListTitle>
-                  <DetailListItem>{blok.client.name}</DetailListItem>
+                  <DetailListItem>{blok.client.name}</DetailListItem>aa
                 </>
               )}
 

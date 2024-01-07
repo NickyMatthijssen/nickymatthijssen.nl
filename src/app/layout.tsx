@@ -15,7 +15,7 @@ import StoryblokProvider from "@/components/StoryblokProvider";
 import { storyblokComponents } from "@/storyblok";
 import { PageAnimation } from "@/components/PageAnimation";
 
-export const revalidate = 0;
+export const revalidate = 60 * 60;
 
 const inter = Noto_Sans({ subsets: ["latin"] });
 
@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     default: "Welcome",
     template: "%s | Nicky Matthijssen",
   },
+  metadataBase: new URL("https://nickymatthijssen.nl"),
 };
 
 export default async function RootLayout({
