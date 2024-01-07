@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --colors-brand-1: #0EA5EA;
+    --colors-brand-2: #1CC2E7;
+    --colors-brand-3: #0EA5EA;
+    --colors-theme-100: #1cc2e7;
+    --colors-theme-200: #66768F;
+    --colors-theme-300: #7F92B0;
+    --colors-theme-400: #94A9C9;
+    --colors-theme-500: #2e548c;
+    --colors-theme-600: #7E9CC7;
+    --colors-theme-700: #4E658A;
+    --colors-theme-800: #C8D5E8;
+    --colors-theme-850: #E8EDF5;
+    --colors-theme-900: #F9FBFF;
+    --colors-theme-950: #F9FBFF;
+    --colors-theme-white: #344161;
+  }
+
+  html.dark {
+    --colors-brand-1: #0EA5EA;
+    --colors-brand-2: #1CC2E7;
+    --colors-brand-3: #0EA5EA;
+    --colors-theme-100: #D8E6FB;
+    --colors-theme-200: #C9DAF5;
+    --colors-theme-300: #B8CDEB;
+    --colors-theme-400: #A7BDDD;
+    --colors-theme-500: #94A9C9;
+    --colors-theme-600: #7F92B0;
+    --colors-theme-700: #66768F;
+    --colors-theme-800: #222F43;
+    --colors-theme-850: #131C31;
+    --colors-theme-900: #0F172A;
+    --colors-theme-950: #0B1222;
+    --colors-theme-white: #b9e0f2;
+  }
+
+  html, body {
+    @apply bg-theme-900 text-theme-500 text-sm;
+  }
+
+  *,
+  ::before,
+  ::after {
+    @apply dark:border-theme-800;
+  }
+}
+
+@layer components { 
+  .stretched-link {
+    @apply after:content-[''] after:absolute after:w-full after:h-full after:inset-0
+  }
+}
