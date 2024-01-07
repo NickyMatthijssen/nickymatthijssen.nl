@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/Card";
-import { Text } from "@/components/Text";
+import { MotionText } from "@/components/MotionComponents";
 import {
   SbBlokData,
   StoryblokComponent,
@@ -20,13 +20,28 @@ export function ServicesSection({ blok }: ServicesSectionProps) {
   return (
     <section className="container my-32" {...storyblokEditable(blok)}>
       <div className="text-center mb-[50px]">
-        <Text size="4xl" weight="bold" color="gradient">
+        <MotionText
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          size="4xl"
+          weight="bold"
+          color="gradient"
+        >
           {blok.title}
-        </Text>
+        </MotionText>
 
-        <Text size="xl" weight="normal" color="default">
+        <MotionText
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          size="xl"
+          weight="normal"
+          color="default"
+        >
           {blok.description}
-        </Text>
+        </MotionText>
       </div>
 
       <Card className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 !pt-[70px] md:!px-[100px] !pb-[20px]">

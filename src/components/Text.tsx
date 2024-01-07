@@ -57,3 +57,4 @@ export const Text = React.forwardRef(
     </Component>
   )
 );
+Text.displayName = "Text";
