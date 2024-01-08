@@ -12,8 +12,7 @@ type DynamicPageProps = {
 };
 
 async function getStoryBySlugArray(slugs?: string[]) {
-  console.log(slugs);
-  const slug = slugs?.join("/") ?? "home";
+  const slug = slugs?.join("/") ?? "index";
   const { data } = await getStory(slug);
 
   return data;
