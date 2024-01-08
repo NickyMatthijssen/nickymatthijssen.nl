@@ -3,7 +3,7 @@ import { StoryblokStory } from "@storyblok/react/rsc";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const revalidate = 60 * 60;
+export const revalidate = 0;
 
 type DynamicPageProps = {
   params: {
@@ -11,7 +11,8 @@ type DynamicPageProps = {
   };
 };
 
-async function getStoryBySlugArray(slugs: string[]) {
+async function getStoryBySlugArray(slugs?: string[]) {
+  console.log(slugs);
   const slug = slugs?.join("/") ?? "home";
   const { data } = await getStory(slug);
 
