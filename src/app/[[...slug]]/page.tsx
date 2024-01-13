@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 
     for (let story of s.data.stories) {
       slugs.push({
-        slug: story.full_slug.split("/"),
+        slug: story.full_slug === "index" ? [""] : story.full_slug.split("/"),
       });
     }
 
