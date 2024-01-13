@@ -2,6 +2,7 @@ import { getStory } from "@/services/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
 
 export const revalidate = 0;
 
@@ -12,8 +13,10 @@ type DynamicPageProps = {
 };
 
 async function getStoryBySlugArray(slugs?: string[]) {
+  const { isEnabled } = draftMode();
+
   const slug = slugs?.join("/") ?? "index";
-  const { data } = await getStory(slug);
+  const { data } = await getStory(slug, isEnabled ? "draft" : "published");
 
   return data;
 }
@@ -21,6 +24,8 @@ async function getStoryBySlugArray(slugs?: string[]) {
 export async function generateMetadata({
   params: { slug },
 }: DynamicPageProps): Promise<Metadata> {
+  const { isEnabled } = draftMode();
+
   try {
     const data = await getStoryBySlugArray(slug);
     const meta = data.story.content?.meta;

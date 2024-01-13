@@ -8,16 +8,11 @@ import { getStory } from "@/services/storyblok";
 import "swiper/css";
 import StoryblokProvider from "@/components/StoryblokProvider";
 import { storyblokComponents } from "@/storyblok";
+import { draftMode } from "next/headers";
 
-export const revalidate = 60 * 60;
+export const revalidate = 0;
 
 const inter = Noto_Sans({ subsets: ["latin"] });
-
-storyblokInit({
-  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
-  use: [apiPlugin],
-  components: storyblokComponents,
-});
 
 export const metadata: Metadata = {
   title: {
@@ -32,6 +27,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { isEnabled } = draftMode();
+  console.log(isEnabled);
+
+  storyblokInit({
+    accessToken: isEnabled
+      ? process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN
+      : process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
+    use: [apiPlugin],
+    components: storyblokComponents,
+    draftMode: isEnabled,
+  });
+
   const { data: globals } = await getStory("globals");
 
   return (

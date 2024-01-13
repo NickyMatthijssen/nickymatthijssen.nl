@@ -2,11 +2,15 @@ import { ISbStoriesParams, getStoryblokApi } from "@storyblok/react/rsc";
 
 type Version = "published" | "draft" | undefined;
 
-export function getStory(slug: string) {
+export function getStory(slug: string, version?: string) {
+  if (!version) {
+    process.env.NEXT_PUBLIC_STORYBLOK_VERSION;
+  }
+
   const api = getStoryblokApi();
 
   return api.getStory(slug, {
-    version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION as Version,
+    version,
     resolve_relations: ["project.client"],
   });
 }
