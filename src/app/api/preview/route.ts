@@ -3,6 +3,9 @@ import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 import { getStory } from "@/services/storyblok";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
