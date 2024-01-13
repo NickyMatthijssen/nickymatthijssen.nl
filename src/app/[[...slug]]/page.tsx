@@ -1,5 +1,5 @@
-import { getStory } from "@/services/storyblok";
-import { StoryblokStory } from "@storyblok/react/rsc";
+import { getStories, getStory } from "@/services/storyblok";
+import { StoryblokComponent, StoryblokStory } from "@storyblok/react/rsc";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
@@ -9,6 +9,38 @@ type DynamicPageProps = {
     slug: string[];
   };
 };
+
+export async function generateStaticParams() {
+  const slugs = [];
+
+  let page: number | null = 1;
+  let total;
+
+  do {
+    const s = await getStories({
+      page: 1,
+      excluding_slugs: "globals",
+    });
+
+    total = Math.ceil(s.total / s.perPage);
+
+    for (let story of s.data.stories) {
+      slugs.push({
+        slug: story.full_slug.split("/"),
+      });
+    }
+
+    break;
+    // if (page != null) {
+    //   page++;
+    // }
+    // if (page > total) {
+    //   page = null;
+    // }
+  } while (page != null);
+
+  return slugs;
+}
 
 async function getStoryBySlugArray(slugs?: string[]) {
   const { isEnabled } = draftMode();

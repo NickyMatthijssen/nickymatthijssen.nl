@@ -1,3 +1,5 @@
+"use client";
+
 import { StoryblokImage } from "@/components";
 import { Card } from "@/components/Card";
 import { SbBlokData, storyblokEditable } from "@storyblok/react";

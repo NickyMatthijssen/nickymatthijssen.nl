@@ -1,5 +1,5 @@
 import { getStories } from "@/services/storyblok";
-import { SbProject } from "@/storyblok/content";
+import { SbProject } from "@/storyblok/content/Project";
 import { ISbStoryData, apiPlugin, storyblokInit } from "@storyblok/react/rsc";
 import { NextRequest, NextResponse } from "next/server";
 
