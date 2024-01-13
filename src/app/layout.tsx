@@ -10,8 +10,6 @@ import StoryblokProvider from "@/components/StoryblokProvider";
 import { storyblokComponents } from "@/storyblok";
 import { draftMode } from "next/headers";
 
-export const revalidate = 0;
-
 const inter = Noto_Sans({ subsets: ["latin"] });
 
 storyblokInit({

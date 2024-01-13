@@ -4,8 +4,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
 
-export const revalidate = 0;
-
 type DynamicPageProps = {
   params: {
     slug: string[];
