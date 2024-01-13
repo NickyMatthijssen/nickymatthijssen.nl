@@ -28,7 +28,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const { isEnabled } = draftMode();
-  console.log(isEnabled);
 
   storyblokInit({
     accessToken: isEnabled
@@ -36,7 +35,6 @@ export default async function RootLayout({
       : process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
     use: [apiPlugin],
     components: storyblokComponents,
-    draftMode: isEnabled,
   });
 
   const { data: globals } = await getStory("globals");
