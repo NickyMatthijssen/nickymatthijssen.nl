@@ -14,6 +14,12 @@ export const revalidate = 0;
 
 const inter = Noto_Sans({ subsets: ["latin"] });
 
+storyblokInit({
+  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+  use: [apiPlugin],
+  components: storyblokComponents,
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Welcome",
@@ -28,14 +34,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const { isEnabled } = draftMode();
-
-  storyblokInit({
-    accessToken: isEnabled
-      ? process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN
-      : process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
-    use: [apiPlugin],
-    components: storyblokComponents,
-  });
 
   const { data: globals } = await getStory("globals");
 
