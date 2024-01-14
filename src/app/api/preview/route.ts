@@ -12,9 +12,9 @@ export async function GET(request: Request) {
   const secret = searchParams.get("secret");
   const slug = searchParams.get("slug");
 
-  // Check the secret and next parameters
+  // Check the secret and slug parameters
   // This secret should only be known to this route handler and the CMS
-  if (secret !== process.env.NEXT_PREVIEW_SECRET || !slug) {
+  if (secret !== process.env.STORYBLOK_PREVIEW_SECRET || !slug) {
     return new Response("Invalid token", { status: 401 });
   }
 
