@@ -11,35 +11,13 @@ type DynamicPageProps = {
 };
 
 export async function generateStaticParams() {
-  const slugs = [];
+  const { data } = await getStories({
+    excluding_slugs: "settings/*",
+  });
 
-  let page: number | null = 1;
-  let total;
-
-  do {
-    const s = await getStories({
-      page: 1,
-      excluding_slugs: "globals",
-    });
-
-    total = Math.ceil(s.total / s.perPage);
-
-    for (let story of s.data.stories) {
-      slugs.push({
-        slug: story.full_slug === "index" ? [""] : story.full_slug.split("/"),
-      });
-    }
-
-    break;
-    // if (page != null) {
-    //   page++;
-    // }
-    // if (page > total) {
-    //   page = null;
-    // }
-  } while (page != null);
-
-  return slugs;
+  return data.stories.map((story) => ({
+    slug: story.full_slug === "index" ? [""] : story.full_slug.split("/"),
+  }));
 }
 
 async function getStoryBySlugArray(slugs?: string[]) {
@@ -54,8 +32,6 @@ async function getStoryBySlugArray(slugs?: string[]) {
 export async function generateMetadata({
   params: { slug },
 }: DynamicPageProps): Promise<Metadata> {
-  const { isEnabled } = draftMode();
-
   try {
     const data = await getStoryBySlugArray(slug);
     const meta = data.story.content?.meta;

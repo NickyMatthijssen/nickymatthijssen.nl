@@ -8,19 +8,18 @@ import { getStory } from "@/services/storyblok";
 import "swiper/css";
 import StoryblokProvider from "@/components/StoryblokProvider";
 import { storyblokComponents } from "@/storyblok";
-import { draftMode } from "next/headers";
 
 const inter = Noto_Sans({ subsets: ["latin"] });
 
 storyblokInit({
-  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
   use: [apiPlugin],
   components: storyblokComponents,
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Welcome",
+    default: "Welcome | Nicky Matthijssen",
     template: "%s | Nicky Matthijssen",
   },
   metadataBase: new URL("https://a.storyblok.com"),
@@ -31,9 +30,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isEnabled } = draftMode();
-
-  const { data: globals } = await getStory("globals");
+  const { data: globals } = await getStory("settings/globals");
 
   return (
     <StoryblokProvider>

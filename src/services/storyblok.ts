@@ -4,7 +4,7 @@ type Version = "published" | "draft" | undefined;
 
 export function getStory(slug: string, version?: Version) {
   if (!version) {
-    process.env.NEXT_PUBLIC_STORYBLOK_VERSION;
+    version = "published";
   }
 
   const api = getStoryblokApi();
