@@ -34,7 +34,7 @@ export function TestimonialSlider({ blok }: TestimonialSliderProps) {
         },
       }}
       onBreakpoint={(swiper, params) =>
-        setCurrentSlidesPerView(params.slidesPerView)
+        setCurrentSlidesPerView(params.slidesPerView as number)
       }
       {...storyblokEditable(blok)}
     >

@@ -3,7 +3,7 @@
 import { ISbStoryData, SbBlokData } from "@storyblok/react";
 import { createContext, useContext } from "react";
 import { NavItem } from "@/components/NavItem";
-import { SbLink } from "@/components/SbLink";
+import { SbLink } from "@/components/StoryblokLink";
 import { StoryblokImage } from "@/components/StoryblokImage";
 import { SbContactInformation } from "@/storyblok/components/ContactInformation";
 import { SocialType } from "@/storyblok/components/Social";
