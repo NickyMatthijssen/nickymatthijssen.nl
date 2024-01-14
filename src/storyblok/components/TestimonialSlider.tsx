@@ -7,6 +7,7 @@ import {
 } from "@storyblok/react/rsc";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 type TestimonialSliderProps = {
   blok: SbBlokData & {
@@ -15,6 +16,8 @@ type TestimonialSliderProps = {
 };
 
 export function TestimonialSlider({ blok }: TestimonialSliderProps) {
+  const [currentSlidesPerView, setCurrentSlidesPerView] = useState(3);
+
   return (
     <Swiper
       loop
@@ -30,20 +33,33 @@ export function TestimonialSlider({ blok }: TestimonialSliderProps) {
           spaceBetween: 24,
         },
       }}
+      onBreakpoint={(swiper, params) =>
+        setCurrentSlidesPerView(params.slidesPerView)
+      }
       {...storyblokEditable(blok)}
     >
-      {blok.testimonials.map((testimonial, index) => (
-        <SwiperSlide key={testimonial._uid}>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.3 }}
-          >
-            <StoryblokComponent blok={testimonial} />
-          </motion.div>
-        </SwiperSlide>
-      ))}
+      {blok.testimonials.map((testimonial, index) => {
+        const isAboveSlidesPerView = index + 1 > currentSlidesPerView;
+
+        return (
+          <SwiperSlide key={testimonial._uid}>
+            <motion.div
+              initial={{
+                opacity: isAboveSlidesPerView ? 1 : 0,
+                y: isAboveSlidesPerView ? 0 : 50,
+              }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                delay: isAboveSlidesPerView ? 0 : index * 0.3,
+              }}
+              key={`slide-${index}-${currentSlidesPerView}`}
+            >
+              <StoryblokComponent blok={testimonial} />
+            </motion.div>
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 }

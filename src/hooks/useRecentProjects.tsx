@@ -21,6 +21,9 @@ export function useRecentProjects() {
       return (await response.json()) as RecentPostsResponse;
     },
     getNextPageParam: (lastPage) => lastPage.meta.next_page,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
   });
 
   const groups = useMemo(

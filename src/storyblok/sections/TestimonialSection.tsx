@@ -30,16 +30,18 @@ export function TestimonialSection({ blok }: TestimonialSectionProps) {
           {blok.title}
         </MotionText>
 
-        <MotionText
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          size="xl"
-          weight="normal"
-          color="default"
-        >
-          {blok.description}
-        </MotionText>
+        {!!blok.description && (
+          <MotionText
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            size="xl"
+            weight="normal"
+            color="default"
+          >
+            {blok.description}
+          </MotionText>
+        )}
       </div>
 
       <div className="mb-[80px]">

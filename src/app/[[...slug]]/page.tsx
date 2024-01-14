@@ -1,5 +1,5 @@
 import { getStories, getStory } from "@/services/storyblok";
-import { StoryblokComponent, StoryblokStory } from "@storyblok/react/rsc";
+import { StoryblokStory } from "@storyblok/react/rsc";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";

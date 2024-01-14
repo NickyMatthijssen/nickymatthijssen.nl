@@ -1,8 +1,10 @@
 "use client";
 
 import { ISbStoryData, SbBlokData } from "@storyblok/react";
-import { createContext } from "react";
-import { NavItem, SbLink, StoryblokImage } from ".";
+import { createContext, useContext } from "react";
+import { NavItem } from "@/components/NavItem";
+import { SbLink } from "@/components/SbLink";
+import { StoryblokImage } from "@/components/StoryblokImage";
 import { SbContactInformation } from "@/storyblok/components/ContactInformation";
 import { SocialType } from "@/storyblok/components/Social";
 import { SbNavigationLink } from "@/storyblok/components/NavigationLink";
@@ -40,6 +42,8 @@ type GlobalsProviderProps = React.PropsWithChildren & {
 };
 
 export const globalsContext = createContext<Globals>({} as Globals);
+
+export const useGlobals = () => useContext(globalsContext);
 
 export function GlobalsProvider({
   children,

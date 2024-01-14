@@ -1,15 +1,14 @@
 "use client";
 
-import { StoryblokImage } from "@/components";
+import { StoryblokImage } from "@/components/StoryblokImage";
 import { MotionText } from "@/components/MotionComponents";
-import { useGlobals } from "@/hooks";
+import { useGlobals } from "@/components/GlobalsProvider";
 import {
   SbBlokData,
   StoryblokComponent,
   storyblokEditable,
 } from "@storyblok/react/rsc";
 import { motion } from "framer-motion";
-import React from "react";
 
 type HeroSmallProps = {
   blok: SbBlokData & {

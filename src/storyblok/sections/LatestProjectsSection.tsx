@@ -1,11 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { ProjectCard, ProjectCardSkeleton, Skeleton } from "@/components";
-import { Text } from "@/components/Text";
 import { useRecentProjects } from "@/hooks";
 import { SbBlokData, storyblokEditable } from "@storyblok/react";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/Button";
 import { ClipLoader } from "react-spinners";
 import { MotionText } from "@/components/MotionComponents";
@@ -20,6 +20,12 @@ type LatestProjectsSectionType = {
 export function LatestProjectsSection({ blok }: LatestProjectsSectionType) {
   const { groups, isFetching, isFetchingNextPage, hasNextPage, next } =
     useRecentProjects();
+
+  const container = useRef(null);
+  const isInView = useInView(container, {
+    once: true,
+    amount: 0.3,
+  });
 
   return (
     <section className="container my-32" {...storyblokEditable(blok)}>
@@ -48,29 +54,36 @@ export function LatestProjectsSection({ blok }: LatestProjectsSectionType) {
         </MotionText>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {groups?.map((projects, group) => (
-          <React.Fragment key={group}>
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.3 }}
-              >
-                <ProjectCard
-                  title={project.content.title}
-                  excerpt={project.content.excerpt}
-                  href={`/${project.full_slug}`}
-                  image={project.content.gallery[0]}
-                />
-              </motion.div>
+      <div
+        ref={container}
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+      >
+        {isInView && (
+          <>
+            {groups?.map((projects, group) => (
+              <React.Fragment key={group}>
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.3 }}
+                  >
+                    <ProjectCard
+                      title={project.content.title}
+                      excerpt={project.content.excerpt}
+                      href={`/${project.full_slug}`}
+                      image={project.content.gallery[0]}
+                    />
+                  </motion.div>
+                ))}
+              </React.Fragment>
             ))}
-          </React.Fragment>
-        ))}
+          </>
+        )}
 
-        {isFetching && (
+        {(isFetching || !isInView) && (
           <>
             {Array.from(Array(6)).map((_, index) => (
               <motion.div

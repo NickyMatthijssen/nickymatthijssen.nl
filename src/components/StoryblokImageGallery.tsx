@@ -1,8 +1,9 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { StoryblokImage } from ".";
 import { Autoplay, Pagination } from "swiper/modules";
+import { StoryblokImage } from "@/components/StoryblokImage";
+
 import "swiper/css/pagination";
 
 type StoryblokImageGalleryProps = {
@@ -16,6 +17,7 @@ export function StoryblokImageGallery({ images }: StoryblokImageGalleryProps) {
       autoplay
       pagination={{ clickable: true }}
       modules={[Pagination, Autoplay]}
+      spaceBetween={16}
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>

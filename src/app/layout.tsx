@@ -3,11 +3,12 @@ import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokBridgeLoader from "@storyblok/react/bridge-loader";
-import { GlobalsProvider, TanstackQueryProvider } from "@/components";
 import { getStory } from "@/services/storyblok";
 import "swiper/css";
 import StoryblokProvider from "@/components/StoryblokProvider";
 import { storyblokComponents } from "@/storyblok";
+import { GlobalsProvider } from "@/components/GlobalsProvider";
+import { TanstackQueryProvider } from "@/components/TanstackQueryProvider";
 
 const inter = Noto_Sans({ subsets: ["latin"] });
 

@@ -1,10 +1,10 @@
 "use client";
 
-import { useGlobals } from "@/hooks";
-import { StoryblokImage } from ".";
+import { useGlobals } from "@/components/GlobalsProvider";
 import Link from "next/link";
-import { NavigationProvider } from "./NavigationProvider";
 import { StoryblokComponent } from "@storyblok/react/rsc";
+import { StoryblokImage } from "@/components/StoryblokImage";
+import { NavigationProvider } from "@/components/NavigationProvider";
 
 export function Navigation() {
   const { navigation } = useGlobals();

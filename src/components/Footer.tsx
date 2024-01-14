@@ -1,6 +1,6 @@
 "use client";
 
-import { useGlobals } from "@/hooks";
+import { useGlobals } from "@/components/GlobalsProvider";
 import { SbLink, StoryblokImage, StoryblokLink } from ".";
 import React from "react";
 import { cx } from "class-variance-authority";
@@ -31,14 +31,14 @@ export function Footer() {
             <p className="text-[14px] my-5">{footer.description}</p>
 
             <div>
-              <Title className="mb-[5px]">Address</Title>
+              <Title className="mb-[5px]">Locatie</Title>
 
               <p className="text-[14px] mb-[20px]">{footer.address}</p>
             </div>
           </div>
 
           <div className="mb-[30px]">
-            <Title>Other links</Title>
+            <Title>Handige links</Title>
 
             <ul className="columns-2">
               {footer.navigation.map((item) => (
@@ -50,7 +50,7 @@ export function Footer() {
           </div>
 
           <div className="mb-[30px]">
-            <Title>Contact me</Title>
+            <Title>Neem contact op</Title>
 
             {footer.contact_information.map((blok) => (
               <StoryblokComponent blok={blok} key={blok._uid} />
