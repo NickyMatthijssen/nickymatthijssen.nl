@@ -21,8 +21,9 @@ export async function GET(request: Request) {
   draftMode().enable();
 
   if (!slug.startsWith("/")) {
-    slug = `/${slug};`;
+    slug = `/${slug}`;
   }
 
+  console.log(slug);
   return redirect(slug);
 }

@@ -16,7 +16,7 @@ export async function GET(request: Request) {
   }
 
   if (!slug.startsWith("/")) {
-    slug = `/${slug};`;
+    slug = `/${slug}`;
   }
 
   return redirect(slug);
