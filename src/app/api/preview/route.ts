@@ -10,7 +10,7 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
-  const slug = searchParams.get("slug");
+  let slug = searchParams.get("slug");
 
   // Check the secret and slug parameters
   // This secret should only be known to this route handler and the CMS
@@ -20,5 +20,9 @@ export async function GET(request: Request) {
 
   draftMode().enable();
 
-  return redirect("/" + slug);
+  if (!slug.startsWith("/")) {
+    slug = `/${slug};`;
+  }
+
+  return redirect(slug);
 }
